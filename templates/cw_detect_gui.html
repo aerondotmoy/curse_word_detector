@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<style>
+            body{
+				background-color: #d1cdb7;
+				background-size: 4px 4px;
+				background-image: linear-gradient(to right, #ccc8b1 1px, #ccc8b100 1px), linear-gradient(to bottom, #ccc8b1 1px, #ccc8b100 1px);
+				font-family: helvetica, sans-serif;
+				letter-spacing: 4px;
+				font-weight: lighter;
+				color: #454138;
+            }
+            header{
+                color:black; 
+				text-align: center; 
+				padding-top: 2px; 
+				padding-bottom:2px; 
+				background-color: #d1cdb7;
+				background-size: 4px 4px;
+				background-image: linear-gradient(to right, #ccc8b1 1px, #ccc8b100 1px), linear-gradient(to bottom, #ccc8b1 1px, #ccc8b100 1px);
+				font-size: 30px;
+            }
+            input,textarea{
+                width: 100%; 
+				height: auto; 
+				resize: vertical; 
+				font: -webkit-small-control;
+            }
+            label {
+                text-align: right; 
+				clear: both; 
+				float: left; 
+				margin-right: 15px;
+            }
+            form{
+                width: 100%; 
+				margin: 10px;
+            }
+            button{
+                float: right;
+				border: 0.5px solid #bab5a1;
+				border-collapse: collapse;
+				background-color: #f0ebcd;
+				transition-duration: 0.4s;
+				font-family: helvetica, sans-serif;
+				letter-spacing: 4px;
+				font-weight: lighter;
+				color: #454138;
+				margin-top: 5px;
+				padding: 5px;
+            }
+			button:hover {
+				background-color: #454138; /* Green */
+				color: #dcd8c0;
+			}
+			mark{
+				background-color: darkred;
+				color: #ffffff;
+			}
+			table{
+				width: 100%;
+				height: 100%;
+				border: 0.5px solid #bab5a1;
+				border-collapse: collapse;
+				background-color: #f0ebcd;
+				font: -webkit-small-control;
+			}
+			th{
+				border: 0.5px solid #bab5a1;
+				border-collapse: collapse;
+				background-color: #454138;
+    			color: #dcd8c0;
+			}
+			td{
+				border: 0.5px solid #bab5a1;
+				border-collapse: collapse;
+			}
+			h1{
+				letter-spacing: 8px;
+    			text-shadow: 5px 5px 0 #bab5a1;
+				color: #454138;
+			}
+			#sentence{
+				border: 0px solid #bab5a1;
+				border-collapse: collapse;
+				background-color: #f0ebcd;
+				font-family: helvetica, sans-serif;
+				letter-spacing: 4px;
+				font-weight: lighter;
+				color: #454138;
+			}
+			#site_desc{
+				text-align: center;
+				background-color: #454138;
+    			color: #dcd8c0;
+				margin-left: 10%;
+				margin-right: 10%;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				padding: 1px;
+			}
+            #site_form{
+                color: #454138; 
+				display: inline-flex; 
+				border-width: 5px; 
+				margin-left: 10%; 
+				margin-right: 10%; 
+				width: 80%; 
+				height:auto;
+
+            }
+            #layer{
+                background-color: #d1cdb7;
+				background-size: 4px 4px;
+				background-image: linear-gradient(to right, #ccc8b1 1px, #ccc8b100 1px), linear-gradient(to bottom, #ccc8b1 1px, #ccc8b100 1px);
+            }
+			#table_div{
+				-moz-appearance: textfield-multiline;
+				-webkit-appearance: textarea;
+				background-color: #d1cdb7;
+				background-size: 4px 4px;
+				background-image: linear-gradient(to right, #ccc8b1 1px, #ccc8b100 1px), linear-gradient(to bottom, #ccc8b1 1px, #ccc8b100 1px);
+				font: medium -moz-fixed;
+				font: -webkit-small-control;
+				height: auto;
+				overflow: auto;
+				padding: 3px;
+				resize: vertical;
+				width: 100%;
+			}
+
+    </style>
+
+	<title>
+	Curse Word Detector
+	</title>
+</head>
+<body>
+	<header>
+	<h1>Curse Word Detector</h1>
+	</header>
+	
+		<div id="layer">
+			<div id="site_desc">
+				<p>
+				Please enter a sentence or paragraph and I will point out the detected curse words.
+				</p>
+			</div>
+		
+
+			<div id="site_form">
+				<form action="/" method="post">
+					<div>
+						<textarea rows="15" spellcheck="false" id="sentence" name="input_sentence">{{ input_sentence }}</textarea>
+					</div>
+					<div class="button">
+						<button type="submit" href="#table_label">Submit</button>
+					</div>
+					<div>
+						<label>Summary Table:</label>
+						<div id="table_div">
+							<table>
+								<thead><tr><th>Curse Word Category</th><th>Frequency Detected</th></tr></thead>
+								<tbody>
+								<tr><td>Sexual Anatomy/Sexual Acts</td><td name="sasa_freq">{{ sasa_freq }}</td></tr>
+								<tr><td>Bodily Excretions</td><td name="be_freq">{{ be_freq }}</td></tr>
+								<tr><td>Mental/Physical Attributes</td><td name="mpa_freq">{{ mpa_freq }}</td></tr>
+								<tr><td>Sexual Orientation/Gender</td><td name="sog_freq">{{ sog_freq }}</td></tr>
+								<tr><td>Religion</td><td name="r_freq">{{ r_freq }}</td></tr>
+								<tr><td>Ethnicity/Race</td><td name="er_freq">{{ er_freq }}</td></tr>
+								<tr><td>Class</td><td name="c_freq">{{ c_freq }}</td></tr>
+								<tr><td>Other</td><td name="o_freq">{{ o_freq }}</td></tr>
+								<tr><td>Total</td><td name="freq_total">{{ freq_total }}</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<br>
+						<label>Detected Curse Words Table:</label>
+						<div id="table_div">
+							<table>
+								<col style="width:15%">
+								<col style="width:15%">
+								<col style="width:35%">
+								<col style="width:15%">
+								<col style="width:20%">
+								<thead><tr><th>Detected Word</th><th>Matched Word</th><th>Category</th><th>Damerau-Levenshtein Distance</th><th>Jaro Distance</th></tr></thead>
+								<tbody name="direct_matches">
+									{% for row in direct_matches %}
+										<tr>
+										{% for cell in row %}
+											<td>{{ cell }}</td>
+										{% endfor %}
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+						<br>
+						<label>Possible Curse Words Table:</label>
+						<div id="table_div">
+							<table>
+								<col style="width:15%">
+								<col style="width:15%">
+								<col style="width:35%">
+								<col style="width:15%">
+								<col style="width:20%">
+								<thead><tr><th>Detected Word</th><th>Matched Word</th><th>Category</th><th>Damerau-Levenshtein Distance</th><th>Jaro Distance</th></tr></thead>
+								<tbody name="indirect_matches">
+									{% for row in indirect_matches %}
+										<tr>
+										{% for cell in row %}
+											<td>{{ cell }}</td>
+										{% endfor %}
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	
+</body>
+</html>
